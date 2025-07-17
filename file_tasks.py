@@ -2,6 +2,9 @@
 Dealing with files
 """
 from io import TextIOWrapper
+import os
+import csv
+import json
 
 """
 Read
@@ -65,7 +68,6 @@ f = open("file_by_py.txt", "x")
 """
 Delete a file, to delete a file we need os module
 """
-import os
 
 os.remove("file_by_py.txt")
 
@@ -78,3 +80,34 @@ if os.path.exists("file_to_read.txt"):
     print("File deleted successfully")
 else:
     print("file does not exist")
+
+
+"""
+Read csv file with csv(without also we can but with csv better handling)
+"""
+
+#  Write
+with open('new_csv.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(["name", "Age"])
+    writer.writerow(["Alice", 20])
+    writer.writerow(["Bob", 22])
+
+# Read
+with open('new_csv.csv', 'r') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+"""
+JSON file using json module
+"""
+
+data = [{"name": "Alice", "age": 20}, {"name": "Bob", "age": 22}]
+
+with open("new_json.json", 'w', newline="\n") as f:
+    json.dump(data, f)
+
+with open("new_json.json", 'r') as f:
+    loaded = json.load(f)
+    print(loaded)
